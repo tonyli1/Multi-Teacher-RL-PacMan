@@ -1,0 +1,5 @@
+myData2/depthQ/teacher1/policy: 2650.31
+myData2/depthQ/teacher2/policy: 2585.62
+myData2/depthQ/teacher3/policy: 2682.58
+myData2/depthQ/teacher4/policy: 1698.3
+myData2/depthQ/teacher5/policy: 2475.52
