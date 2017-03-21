@@ -40,8 +40,13 @@ public class Experiments {
 	
 	public static String TEACHER = "depthQ"; // Teacher feature set and algorithm
 	public static String STUDENT = "depthS"; // Student feature set and algorithm old customS
+<<<<<<< HEAD
 	public static String DIR = "myDataTeacher/"+TEACHER+"/"+STUDENT; // Where to store data
 	public static int NUMTEACHERS = 2;
+=======
+	public static String DIR = "myDataTeacher/teacher2/"+TEACHER+"/"+STUDENT; // Where to store data
+	public static int NUMTEACHERS = 1;
+>>>>>>> refs/remotes/origin/master
 	
 	public static int BUDGET = 1000; // Advice budget
 	public static int REPEATS = 30; // 30 Curves to average //30 runs na trekseis
@@ -106,7 +111,11 @@ public class Experiments {
 //		 train("correct60", 0);
 //		 train("correct80", 0);
 //		 train("correct100", 0);
+<<<<<<< HEAD
 //		 train("correct120", 0);
+=======
+		 train("correct120", 0);
+>>>>>>> refs/remotes/origin/master
 //		 train("correct140", 0);
 ////		plotGaps();
 //		 
@@ -129,6 +138,7 @@ public class Experiments {
 //			String this_line = file_inputs.get(i);
 //			DIR = this_line+"/"+TEACHER+"/"+STUDENT;
 //		}
+<<<<<<< HEAD
 //		 for (int i = 0; i < 3; i++) {
 //			int i = 2;
 //			 DIR = "myDataTeacher/" + "bteacher" +(i+1) + "/"+TEACHER+"/"+STUDENT;
@@ -159,6 +169,9 @@ public class Experiments {
 			train("advise40", 0);
 			train("correct40", 0);
 		}
+=======
+
+>>>>>>> refs/remotes/origin/master
 	}
 
 	/** Set up a learner. */
@@ -194,6 +207,7 @@ public class Experiments {
 			teacher5.loadPolicy("myData1/"+TEACHER+"/teacher5/policy");
 			
 			BasicRLPacMan bteacher = TEACHER.endsWith("S") ? new SarsaPacMan(teacherProto) : new QPacMan(teacherProto);
+<<<<<<< HEAD
 			bteacher.loadPolicy("myDataBad1/"+TEACHER+"/teacher1/policy");
 			BasicRLPacMan bteacher2 = TEACHER.endsWith("S") ? new SarsaPacMan(teacherProto) : new QPacMan(teacherProto);
 			bteacher2.loadPolicy("myDataBad1/"+TEACHER+"/teacher2/policy");
@@ -208,6 +222,29 @@ public class Experiments {
 			for (int i = 0; i < NUMTEACHERS; i++) {
 				teachers.add(g_teachers[i]);
 			}
+=======
+			bteacher.loadPolicy("myDataBad/"+TEACHER+"/teacher1/policy");
+			BasicRLPacMan bteacher2 = TEACHER.endsWith("S") ? new SarsaPacMan(teacherProto) : new QPacMan(teacherProto);
+			bteacher2.loadPolicy("myDataBad/"+TEACHER+"/teacher2/policy");
+			BasicRLPacMan bteacher3 = TEACHER.endsWith("S") ? new SarsaPacMan(teacherProto) : new QPacMan(teacherProto);
+			bteacher3.loadPolicy("myDataBad/"+TEACHER+"/teacher3/policy");
+			
+//			BasicRLPacMan[] g_teachers = {teacher, teacher2, teacher3, teacher4, teacher5};
+
+			ArrayList<BasicRLPacMan> teachers = new ArrayList<BasicRLPacMan>();
+//			for (int i = 0; i < NUMTEACHERS; i++) {
+//				teachers.add(g_teachers[i]);
+//			}
+//			teachers.add(teacher);
+			teachers.add(teacher2);
+//			teachers.add(teacher3);
+//			teachers.add(teacher4);
+//			teachers.add(teacher5);
+			
+//			teachers.add(bteacher);
+//			teachers.add(bteacher2);
+//			teachers.add(bteacher3);
+>>>>>>> refs/remotes/origin/master
 			
 			// Front-load the advice budget
 			if (learner.startsWith("baseline")) {
