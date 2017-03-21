@@ -16,6 +16,7 @@ public class AdviseImportantStates extends TeachingStrategy {
 	public double maxvar;
 	private int threshold; // Of action importance
 	public static String TEACHDIR = "myDataTeacher/AdviseImportant"; // Where to store data
+//	public static int[] BESTTHRESHOLDS = {40, 40, 40, 40, 40}; // empirically-chosen thresholds for 5 teachers
 	
 //	public class TeacherMeta {
 //		public double q_gap;
