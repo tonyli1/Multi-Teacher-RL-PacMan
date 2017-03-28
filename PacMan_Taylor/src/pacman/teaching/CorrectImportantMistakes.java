@@ -29,7 +29,7 @@ public class CorrectImportantMistakes extends TeachingStrategy {
 			double gap = Stats.max(qvalues) - Stats.min(qvalues);
 			boolean important = (gap > threshold);
 			
-			Experiments.writer.println(i+","+gap);
+			Experiments.writer.println(i+","+gap+","+left);
 	
 			if (important) {
 				teacher_flags++;

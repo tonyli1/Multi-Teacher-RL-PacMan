@@ -71,19 +71,20 @@ public class AdviseImportantStates extends TeachingStrategy {
 //			System.out.println(i+": "+gap);
 			
 			boolean important = gap > threshold;//> *1000
-			Experiments.writer.println(i+","+gap);
+			Experiments.writer.println(i+","+gap+","+left);
 	
 			if (important) {
-				left--;
 				//System.out.println("budget left: "+left);
 //				return true;
 				teacher_flags++;
 			}
+			
 		}
 		
 //		System.out.println("teacher_flags: "+teacher_flags);
 		
 		if (teacher_flags > (teachers.size() / 2)) {
+			left--;
 			return true;
 		}
 		

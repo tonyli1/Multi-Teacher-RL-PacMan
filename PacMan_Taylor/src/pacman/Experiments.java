@@ -10,7 +10,7 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.BufferedReader;
 
-import java.text.DecimalFormat;
+//import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -25,7 +25,7 @@ import pacman.entries.pacman.RLPacMan;
 import pacman.entries.pacman.SarsaPacMan;
 import pacman.game.Game;
 import pacman.game.GameView;
-import pacman.game.Constants.MOVE;
+//import pacman.game.Constants.MOVE;
 import pacman.teaching.AdviseAtFirst;
 import pacman.teaching.AdviseImportantStates;
 import pacman.teaching.CorrectImportantMistakes;
@@ -41,7 +41,10 @@ public class Experiments {
 	public static String TEACHER = "depthQ"; // Teacher feature set and algorithm
 	public static String STUDENT = "depthQ"; // Student feature set and algorithm old customS
 	public static String DIR = "myDataTeacher/"+TEACHER+"/"+STUDENT; // Where to store data
+	public static String TESTFILE = "test.txt";
 	public static int NUMTEACHERS = 2;
+	public static boolean INDIETEACHERS = false;
+	public static ArrayList<Integer> INDIEBUDGETS = new ArrayList<Integer>();
 	
 	public static int BUDGET = 1000; // Advice budget
 	public static int REPEATS = 30; // 30 Curves to average //30 runs na trekseis
@@ -84,9 +87,11 @@ public class Experiments {
 	 */
 	public static void main(String[] args) {
 
-		
+//		LENGTH = 40;
+//		STUDENT = "depthQ";
+//		DIR = "myDataTeacher/myDataTrain400/"+TEACHER+"/"+STUDENT;
 //		 train("independent", 0);
-//		 findBestTeacher();
+			 
 //		 train("advise0", 0);
 //		 train("advise20", 0);
 //		 train("advise40", 0);
@@ -110,7 +115,7 @@ public class Experiments {
 
 //		 train("correct140", 0);
 ////		plotGaps();
-//		 
+	 
 //		 String[] teachers = new String[]{"myData2/"+TEACHER+"/teacher1/policy",
 //		                      "myData2/"+TEACHER+"/teacher2/policy",
 //		                      "myData2/"+TEACHER+"/teacher3/policy",
@@ -125,41 +130,155 @@ public class Experiments {
 //		} catch (IOException e) {
 //			System.out.println(e.getMessage());
 //		}
-//		 
 //		for (int i = 0; i < file_inputs.size(); i++) {
 //			String this_line = file_inputs.get(i);
 //			DIR = this_line+"/"+TEACHER+"/"+STUDENT;
 //		}
-//		 for (int i = 0; i < 3; i++) {
-//			int i = 2;
-//			 DIR = "myDataTeacher/" + "bteacher" +(i+1) + "/"+TEACHER+"/"+STUDENT;
+		
+//		STUDENT = "depthS";
+//		int[] training_eps = {40, 50, 60};
+//		for (int i = 1; i <= 4; i++) {
+//			 DIR = "myDataTeacher/myDataTrain" + training_eps[i]*10 + "/"+TEACHER+"/"+STUDENT;
 //			 NUMTEACHERS = i;
-//			 train("baseline", 0);
-//			 train("advise0", 0);
-//			 train("advise20", 0);
-//			 train("advise40", 0);
-//			 train("advise60", 0);
-//			 train("advise80", 0);
-//			 train("advise100", 0);
-//			 train("advise120", 0);
-//			 train("advise140", 0);
-//			 train("correct0", 0);
-//			 train("correct20", 0);
-//			 train("correct40", 0);
-//			 train("correct60", 0);
-//			 train("correct80", 0);
-//			 train("correct100", 0);
-//			 train("correct120", 0);
-//			 train("correct140", 0);
-//		 }
-			 
-		for (int i=2; i <= 3; i++) {
-			DIR = "myData" + i + "/" + TEACHER + "/" + STUDENT;
+//			 train("advise10", 24);
+//			 train("correct10", 0);
+//		}
+		
+//		REVISING ADVISE - MY MISTAKE
+//		LENGTH = 60;
+//		STUDENT = "depthS";
+//		for (int i=3; i <= 5; i++) {
+//			DIR = "myData" + i + "/" + TEACHER + "/" + STUDENT;
+//			TESTFILE = DIR + "newtest.txt";
+//			NUMTEACHERS = i;
+//			train("newadvise40", 0);
+//		}
+//		
+//		LENGTH = 80;
+//		STUDENT = "depthQ";
+//		for (int i=2; i <= 5; i++) {
+//			DIR = "myData" + i + "/" + TEACHER + "/" + STUDENT;
+//			TESTFILE = DIR + "newtest.txt";
+//			NUMTEACHERS = i;
+//			train("newadvise40", 0);
+//		}
+//		LENGTH = 60;
+//		STUDENT = "depthS";
+//		for (int i=2; i <= 5; i++) {
+//			DIR = "myDataSubGood" + i + "/" + TEACHER + "/" + STUDENT;
+//			NUMTEACHERS = i;
+//			TESTFILE = "rev" + i + "_" + STUDENT + "_newadvise40.txt";
+//			train("newadvise40", 0);
+//		}
+//		
+//		LENGTH = 80;
+//		STUDENT = "depthQ";
+//		for (int i=2; i <= 5; i++) {
+//			DIR = "myDataSubGood" + i + "/" + TEACHER + "/" + STUDENT;
+//			NUMTEACHERS = i;
+//			TESTFILE = "rev" + i + "_" + STUDENT + "_newadvise40.txt";
+//			train("newadvise40", 0);
+//		}
+//		~~~~~~~~~~~~ ~~~~~~~~~~~~~~
+//		TODO v
+//		LENGTH = 60;
+//		STUDENT = "depthS";
+//		for (int i=1; i <= 3; i++) {
+//			if (i == 1) {
+//				DIR = "myDataDiverse4/" + TEACHER + "/" + STUDENT;
+//				TESTFILE = "diverse4_" + STUDENT + "_newadvise20.txt";
+//			}
+//			else if (i == 2) {
+//				DIR = "myDataDiverse4-5/" + TEACHER + "/" + STUDENT;
+//				TESTFILE = "diverse4-5_" + STUDENT + "_newadvise20.txt";
+//			}
+//			else if (i == 3) {
+//				DIR = "myDataDiverse4-5-6/" + TEACHER + "/" + STUDENT;
+//				TESTFILE = "diverse4-5-6_" + STUDENT + "_newadvise20.txt";
+//			}
+//			else{
+//				DIR = "myDataDiverse4-5-6-8/" + TEACHER + "/" + STUDENT;
+//				TESTFILE = "diverse4-5-6-8_" + STUDENT + "_newadvise20.txt";
+//			}
+			
+//			NUMTEACHERS = i;
+//			if (i == 1) {
+//				DIR = "myDataDiverse4-8/" + TEACHER + "/" + STUDENT;
+//				TESTFILE = "diverse4-8_" + STUDENT + "_baseline.txt";
+//				train("baseline",0);
+//				TESTFILE = "diverse4-8_" + STUDENT + "_correct20.txt";
+//				train("correct20",0);
+//				TESTFILE = "diverse4-8_" + STUDENT + "_newadvise20.txt";
+//			}
+//			else if (i == 2) {
+//				DIR = "myDataDiverse4-5-8/" + TEACHER + "/" + STUDENT;
+//				TESTFILE = "diverse4-5-8_" + STUDENT + "_baseline.txt";
+//				train("baseline",0);
+//				TESTFILE = "diverse4-5-8_" + STUDENT + "_correct20.txt";
+//				train("correct20",0);
+//				TESTFILE = "diverse4-5-8_" + STUDENT + "_newadvise20.txt";
+//			}
+//			else if (i == 3) {
+//				DIR = "myDataDiverse4-6-8/" + TEACHER + "/" + STUDENT;
+//				TESTFILE = "diverse4-6-8_" + STUDENT + "_newadvise20.txt";
+//			}
+//			train("newadvise20", 0);
+//		}
+		LENGTH = 80;
+		STUDENT = "depthQ";
+		for (int i=1; i <= 3; i++) {
 			NUMTEACHERS = i;
-//			train("baseline", 0);
-			train("advise40", 0);
-			train("correct40", 0);
+			if (i == 1) {
+				DIR = "myDataDiverse4-8/" + TEACHER + "/" + STUDENT;
+				TESTFILE = "diverse4-8_" + STUDENT + "_baseline.txt";
+				train("baseline",0);
+				TESTFILE = "diverse4-8_" + STUDENT + "_correct20.txt";
+				train("correct20",0);
+				TESTFILE = "diverse4-8_" + STUDENT + "_newadvise20.txt";
+			}
+			else if (i == 2) {
+				DIR = "myDataDiverse4-5-8/" + TEACHER + "/" + STUDENT;
+				TESTFILE = "diverse4-5-8_" + STUDENT + "_baseline.txt";
+				train("baseline",0);
+				TESTFILE = "diverse4-5-8_" + STUDENT + "_correct20.txt";
+				train("correct20",0);
+				TESTFILE = "diverse4-5-8_" + STUDENT + "_newadvise20.txt";
+			}
+			else if (i == 3) {
+				DIR = "myDataDiverse4-6-8/" + TEACHER + "/" + STUDENT;
+				TESTFILE = "diverse4-6-8_" + STUDENT + "_newadvise20.txt";
+			}
+			train("newadvise20", 0);
 		}
+		
+//		running::::
+//		LENGTH = 100;
+//		STUDENT = "depthQ";
+//		for (int i=1; i <= 5; i++) {
+//			DIR = "myDataSubGood" + i + "/" + TEACHER + "/" + STUDENT + "/baseline";
+//			TESTFILE = "rev" + i + "_" + STUDENT + "_baseline.txt";
+//			NUMTEACHERS = i;
+//			train("baseline", 0);
+//			DIR = "myDataSubGood" + i + "/" + TEACHER + "/" + STUDENT + "/advise40";
+//			TESTFILE = "rev" + i + "_" + STUDENT + "_advise40.txt";
+//			train("advise40", 0);
+//			DIR = "myDataSubGood" + i + "/" + TEACHER + "/" + STUDENT + "/correct40";
+//			TESTFILE = "rev" + i + "_" + STUDENT + "_correct40.txt";
+//			train("correct40", 0);
+//		}
+//		
+//		LENGTH = 100;
+//		STUDENT="depthS";
+//		for (int i=1; i <= 5; i++) {
+//			DIR = "myDataSubGood" + i + "/" + TEACHER + "/" + STUDENT + "/advise40";
+//			TESTFILE = "rev" + i + "_" + STUDENT + "_advise40.txt";
+//			NUMTEACHERS = i;
+//			train("advise40", 0);
+//			DIR = "myDataSubGood" + i + "/" + TEACHER + "/" + STUDENT + "/correct40";
+//			TESTFILE = "rev" + i + "_" + STUDENT + "_correct40.txt";
+//			train("correct40", 0);
+//		}
+		
 	}
 
 	/** Set up a learner. */
@@ -201,14 +320,40 @@ public class Experiments {
 			BasicRLPacMan bteacher3 = TEACHER.endsWith("S") ? new SarsaPacMan(teacherProto) : new QPacMan(teacherProto);
 			bteacher3.loadPolicy("myDataBad1/"+TEACHER+"/teacher3/policy");
 			
+			BasicRLPacMan teacherT400 = TEACHER.endsWith("S") ? new SarsaPacMan(teacherProto) : new QPacMan(teacherProto);
+			teacherT400.loadPolicy("myDataTeacher/myDataTrain400/policy");
+			BasicRLPacMan teacherT500 = TEACHER.endsWith("S") ? new SarsaPacMan(teacherProto) : new QPacMan(teacherProto);
+			teacherT500.loadPolicy("myDataTeacher/myDataTrain500/policy");
+			BasicRLPacMan teacherT600 = TEACHER.endsWith("S") ? new SarsaPacMan(teacherProto) : new QPacMan(teacherProto);
+			teacherT600.loadPolicy("myDataTeacher/myDataTrain600/policy");
+			
 			BasicRLPacMan[] g_teachers = {teacher, teacher2, teacher3, teacher4, teacher5};
+			BasicRLPacMan[] g_teachers_sub = {teacher5, teacher4, teacher3, teacher2, teacher}; // same good teachers reversed
 			BasicRLPacMan[] b_teachers = {bteacher, bteacher2, bteacher3};
+			BasicRLPacMan[] diverse_teachers = {teacherT400, teacherT500, teacherT600, teacher};
+			BasicRLPacMan[] diverse_teachers2 = {teacherT400, teacherT600, teacher, teacherT500};
 
 			ArrayList<BasicRLPacMan> teachers = new ArrayList<BasicRLPacMan>();
-//			teachers.add(b_teachers[NUMTEACHERS]);
-			for (int i = 0; i < NUMTEACHERS; i++) {
-				teachers.add(g_teachers[i]);
+			
+			// finding threshold
+//			teachers.add(diverse_teachers[NUMTEACHERS]);
+//			
+//			for (int i = 0; i < NUMTEACHERS; i++) {
+//				teachers.add(g_teachers[i]);
+//				if (INDIETEACHERS) {
+//					INDIEBUDGETS.add(BUDGET);
+//				}
+//			}
+			
+//			special case: diverse
+			teachers.add(diverse_teachers[0]);
+			if (NUMTEACHERS == 2) {
+				teachers.add(diverse_teachers[1]);
 			}
+			else if (NUMTEACHERS == 3) {
+				teachers.add(diverse_teachers[2]);
+			}
+			teachers.add(diverse_teachers[3]);
 			
 			// Front-load the advice budget
 			if (learner.startsWith("baseline")) {
@@ -217,6 +362,11 @@ public class Experiments {
 			}
 			
 			// Advise in important states
+			if (learner.startsWith("newadvise")) {
+				int threshold = Integer.parseInt(learner.substring(9));
+				TeachingStrategy strategy = new AdviseImportantStates(threshold);
+				return new Student(teachers, student, strategy);
+			}
 			if (learner.startsWith("advise")) {
 				int threshold = Integer.parseInt(learner.substring(6));
 				TeachingStrategy strategy = new AdviseImportantStates(threshold);
@@ -245,7 +395,8 @@ public class Experiments {
 	public static void train(String learner, int start) {
 		
 		try {
-			writer = new PrintWriter(new FileWriter(DIR+"/test.txt"));
+//			writer = new PrintWriter(new FileWriter(DIR+"/testgaps.txt"));
+			writer = new PrintWriter(new FileWriter(TESTFILE));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -360,6 +511,13 @@ public class Experiments {
 	/** Select a teacher from the independent students. */
 	public static void findBestTeacher() {
 		
+		try {
+			writer = new PrintWriter(new FileWriter(DIR+"/testscores.txt"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		double[] scores = new double[REPEATS];
 		
 		for (int i=0; i<REPEATS; i++) {
@@ -367,6 +525,7 @@ public class Experiments {
 			pacman.loadPolicy(DIR+"/independent/policy"+i);
 			scores[i] = evaluate(pacman, 500);
 			System.out.println(DIR+"/independent/policy"+i+": "+scores[i]);
+			writer.println(DIR+"/independent/policy"+i+": "+scores[i]);
 		}
 		
 		int bestPolicy = 0;
@@ -375,6 +534,7 @@ public class Experiments {
 				bestPolicy = i;
 		
 		System.out.println("Best: "+DIR+"/independent/policy"+bestPolicy);
+		writer.println("Best: "+DIR+"/independent/policy"+bestPolicy);
 	}
 	
 	/** Quantify teachers from the their policies */
@@ -395,7 +555,8 @@ public class Experiments {
 	/** Make a plottable file of Q-value gaps over a few episodes. */
 	public static void plotGaps() {
 
-		DataFile file = new DataFile("myData/"+TEACHER+"/teacher/gaps");
+//		DataFile file = new DataFile("myData/"+TEACHER+"/teacher/gaps");
+		DataFile file = new DataFile(DIR + "/testgaps");
 		file.clear();
 
 		BasicRLPacMan pacman = (BasicRLPacMan)create("teacher");
