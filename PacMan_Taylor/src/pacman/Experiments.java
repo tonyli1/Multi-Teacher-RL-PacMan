@@ -226,7 +226,7 @@ public class Experiments {
 //		}
 		LENGTH = 80;
 		STUDENT = "depthQ";
-		for (int i=1; i <= 3; i++) {
+		for (int i=2; i <= 3; i++) {
 			NUMTEACHERS = i;
 			if (i == 1) {
 				DIR = "myDataDiverse4-8/" + TEACHER + "/" + STUDENT;
@@ -238,10 +238,8 @@ public class Experiments {
 			}
 			else if (i == 2) {
 				DIR = "myDataDiverse4-5-8/" + TEACHER + "/" + STUDENT;
-				TESTFILE = "diverse4-5-8_" + STUDENT + "_baseline.txt";
-				train("baseline",0);
 				TESTFILE = "diverse4-5-8_" + STUDENT + "_correct20.txt";
-				train("correct20",0);
+				train("correct20",25);
 				TESTFILE = "diverse4-5-8_" + STUDENT + "_newadvise20.txt";
 			}
 			else if (i == 3) {
