@@ -14,17 +14,30 @@ public class CorrectImportantMistakes extends TeachingStrategy {
 	
 	private int left; // Advice to give
 	private int threshold; // Of mistake importance
+	private ArrayList<Integer> budgets_left; //individual advice to give
+	private int[] teacher_usage;
 		
 	public CorrectImportantMistakes(int t) {
 		left = Experiments.BUDGET;
 		threshold = t;
+		budgets_left = Experiments.INDIEBUDGETS;
 	}
 
 	/** When the state has widely varying Q-values, and the student doesn't take the advice action. */
 	public boolean giveAdvice(ArrayList<BasicRLPacMan> teachers, MOVE choice, MOVE advice) {
 		
-		int teacher_flags = 0;		
+		// keep track of teacher votes and budget usage
+		int teacher_flags = 0;
+		teacher_usage = new int[teachers.size()];
+		
 		for (int i = 0; i < teachers.size(); i++) {
+			if (budgets_left.size() > 0) {
+				// check if individual teacher still has budget
+				if (budgets_left.get(i) <= 0) {
+					continue;
+				}
+			}
+			
 			double[] qvalues = teachers.get(i).getQValues();
 			double gap = Stats.max(qvalues) - Stats.min(qvalues);
 			boolean important = (gap > threshold);
@@ -33,6 +46,7 @@ public class CorrectImportantMistakes extends TeachingStrategy {
 	
 			if (important) {
 				teacher_flags++;
+				teacher_usage[i] = 1;
 			}
 		}
 		
@@ -42,6 +56,12 @@ public class CorrectImportantMistakes extends TeachingStrategy {
 			
 			if (mistake) {
 				left--;
+				if (budgets_left.size() > 0) {
+					for (int i=0; i < teachers.size(); i++) {
+						// update individual budgets
+						budgets_left.set(i, (budgets_left.get(i) - teacher_usage[i]));
+					}
+				}
 				return true;
 			}
 		}
@@ -52,5 +72,17 @@ public class CorrectImportantMistakes extends TeachingStrategy {
 	/** Until none left. */
 	public boolean inUse() {
 		return (left > 0);
+	}
+	
+	public ArrayList<MOVE> teachersAdvice(ArrayList<MOVE> all_moves) {
+		ArrayList<MOVE> ret_moves = new ArrayList<MOVE>();
+		if (budgets_left.size() > 0) {
+			for (int i=0; i < budgets_left.size(); i++) {
+				if (teacher_usage[i] > 0) {
+					ret_moves.add(all_moves.get(i));
+				}
+			}
+		}
+		return ret_moves;
 	}
 }
