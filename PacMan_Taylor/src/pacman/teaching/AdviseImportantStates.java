@@ -73,7 +73,12 @@ public class AdviseImportantStates extends TeachingStrategy {
 //			System.out.println(i+": "+gap);
 			
 			boolean important = gap > threshold;//> *1000
-			Experiments.writer.println(i+","+gap+","+left);
+			if (budgets_left.size() > 0) {
+				Experiments.writer.println(i+","+gap+","+budgets_left.get(i));
+			}
+			else {
+				Experiments.writer.println(i+","+gap+","+left);
+			}
 	
 			if (important) {
 //				return true;
@@ -91,6 +96,7 @@ public class AdviseImportantStates extends TeachingStrategy {
 				for (int i=0; i < teachers.size(); i++) {
 					// update individual budgets
 					budgets_left.set(i, (budgets_left.get(i) - teacher_usage[i]));
+//					System.out.println("T" + i + ": " + budgets_left.get(i));
 				}
 			}
 			return true;
@@ -101,6 +107,15 @@ public class AdviseImportantStates extends TeachingStrategy {
 	 
 	/** Until none left. */
 	public boolean inUse() {
+		if (budgets_left.size() > 0) {
+			for (int i=0; i < budgets_left.size(); i++) {
+				if (budgets_left.get(i) > 0) {
+					return true;
+				}
+			}
+			return false;
+		}
+		
 		return (left > 0);
 	}
 	

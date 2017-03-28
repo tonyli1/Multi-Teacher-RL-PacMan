@@ -19,4 +19,8 @@ public abstract class TeachingStrategy {
 		double[] data = new double[0];
 		return data;
 	}
+	
+	public ArrayList<MOVE> getTeachersAdvice(ArrayList<MOVE> all_moves) {
+		return new ArrayList<MOVE>();
+	}	//override in correctImportant
 }

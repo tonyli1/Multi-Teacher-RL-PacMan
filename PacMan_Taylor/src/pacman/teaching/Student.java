@@ -94,6 +94,11 @@ public class Student extends RLPacMan {
 //			MOVE advice = teacher.getMove(game, timeDue);
 			
 			if (strategy.giveAdvice(teacher, choice, advice)) {
+				ArrayList<MOVE> final_advice = strategy.getTeachersAdvice(teachers_advice);
+				if (final_advice.size() > 0) {
+					// limits teachers if implemented (CorrectImportant)
+					advice = majorityVote(final_advice);
+				}
 				student.setMove(advice);
 				adviceCount++;
 				return advice;

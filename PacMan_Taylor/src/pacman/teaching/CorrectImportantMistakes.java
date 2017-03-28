@@ -42,7 +42,12 @@ public class CorrectImportantMistakes extends TeachingStrategy {
 			double gap = Stats.max(qvalues) - Stats.min(qvalues);
 			boolean important = (gap > threshold);
 			
-			Experiments.writer.println(i+","+gap+","+left);
+			if (budgets_left.size() > 0) {
+				Experiments.writer.println(i+","+gap+","+budgets_left.get(i));
+			}
+			else {
+				Experiments.writer.println(i+","+gap+","+left);
+			}
 	
 			if (important) {
 				teacher_flags++;
@@ -71,10 +76,19 @@ public class CorrectImportantMistakes extends TeachingStrategy {
 	
 	/** Until none left. */
 	public boolean inUse() {
+		if (budgets_left.size() > 0) {
+			for (int i=0; i < budgets_left.size(); i++) {
+				if (budgets_left.get(i) > 0) {
+					return true;
+				}
+			}
+			return false;
+		}
+		
 		return (left > 0);
 	}
 	
-	public ArrayList<MOVE> teachersAdvice(ArrayList<MOVE> all_moves) {
+	public ArrayList<MOVE> getTeachersAdvice(ArrayList<MOVE> all_moves) {
 		ArrayList<MOVE> ret_moves = new ArrayList<MOVE>();
 		if (budgets_left.size() > 0) {
 			for (int i=0; i < budgets_left.size(); i++) {

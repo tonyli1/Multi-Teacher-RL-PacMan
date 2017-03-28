@@ -34,8 +34,8 @@ public class PredictImportantMistakes extends TeachingStrategy {
 	}
 
 	/** When the state has widely varying Q-values, and we predict the student won't take the advice action. */
-	public boolean giveAdvice(ArrayList<BasicRLPacMan>, MOVE choice, MOVE advice) {
-		
+	public boolean giveAdvice(ArrayList<BasicRLPacMan> teachers, MOVE choice, MOVE advice) {
+		BasicRLPacMan teacher = teachers.get(0);
 		// Can't predict before the first episode
 		if (episode > 1) {
 			

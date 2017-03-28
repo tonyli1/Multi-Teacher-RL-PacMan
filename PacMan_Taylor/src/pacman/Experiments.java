@@ -43,7 +43,7 @@ public class Experiments {
 	public static String DIR = "myDataTeacher/"+TEACHER+"/"+STUDENT; // Where to store data
 	public static String TESTFILE = "test.txt";
 	public static int NUMTEACHERS = 2;
-	public static boolean INDIETEACHERS = false;
+	public static boolean INDIETEACHERS = true;
 	public static ArrayList<Integer> INDIEBUDGETS = new ArrayList<Integer>();
 	
 	public static int BUDGET = 1000; // Advice budget
@@ -181,73 +181,25 @@ public class Experiments {
 //		}
 //		~~~~~~~~~~~~ ~~~~~~~~~~~~~~
 //		TODO v
-//		LENGTH = 60;
-//		STUDENT = "depthS";
-//		for (int i=1; i <= 3; i++) {
-//			if (i == 1) {
-//				DIR = "myDataDiverse4/" + TEACHER + "/" + STUDENT;
-//				TESTFILE = "diverse4_" + STUDENT + "_newadvise20.txt";
-//			}
-//			else if (i == 2) {
-//				DIR = "myDataDiverse4-5/" + TEACHER + "/" + STUDENT;
-//				TESTFILE = "diverse4-5_" + STUDENT + "_newadvise20.txt";
-//			}
-//			else if (i == 3) {
-//				DIR = "myDataDiverse4-5-6/" + TEACHER + "/" + STUDENT;
-//				TESTFILE = "diverse4-5-6_" + STUDENT + "_newadvise20.txt";
-//			}
-//			else{
-//				DIR = "myDataDiverse4-5-6-8/" + TEACHER + "/" + STUDENT;
-//				TESTFILE = "diverse4-5-6-8_" + STUDENT + "_newadvise20.txt";
-//			}
-			
-//			NUMTEACHERS = i;
-//			if (i == 1) {
-//				DIR = "myDataDiverse4-8/" + TEACHER + "/" + STUDENT;
-//				TESTFILE = "diverse4-8_" + STUDENT + "_baseline.txt";
-//				train("baseline",0);
-//				TESTFILE = "diverse4-8_" + STUDENT + "_correct20.txt";
-//				train("correct20",0);
-//				TESTFILE = "diverse4-8_" + STUDENT + "_newadvise20.txt";
-//			}
-//			else if (i == 2) {
-//				DIR = "myDataDiverse4-5-8/" + TEACHER + "/" + STUDENT;
-//				TESTFILE = "diverse4-5-8_" + STUDENT + "_baseline.txt";
-//				train("baseline",0);
-//				TESTFILE = "diverse4-5-8_" + STUDENT + "_correct20.txt";
-//				train("correct20",0);
-//				TESTFILE = "diverse4-5-8_" + STUDENT + "_newadvise20.txt";
-//			}
-//			else if (i == 3) {
-//				DIR = "myDataDiverse4-6-8/" + TEACHER + "/" + STUDENT;
-//				TESTFILE = "diverse4-6-8_" + STUDENT + "_newadvise20.txt";
-//			}
-//			train("newadvise20", 0);
-//		}
-		LENGTH = 80;
-		STUDENT = "depthQ";
-		for (int i=2; i <= 3; i++) {
+		LENGTH = 60;
+		STUDENT = "depthS";
+		for (int i=2; i <= 5; i++) {
 			NUMTEACHERS = i;
-			if (i == 1) {
-				DIR = "myDataDiverse4-8/" + TEACHER + "/" + STUDENT;
-				TESTFILE = "diverse4-8_" + STUDENT + "_baseline.txt";
-				train("baseline",0);
-				TESTFILE = "diverse4-8_" + STUDENT + "_correct20.txt";
-				train("correct20",0);
-				TESTFILE = "diverse4-8_" + STUDENT + "_newadvise20.txt";
-			}
-			else if (i == 2) {
-				DIR = "myDataDiverse4-5-8/" + TEACHER + "/" + STUDENT;
-				TESTFILE = "diverse4-5-8_" + STUDENT + "_correct20.txt";
-				train("correct20",25);
-				TESTFILE = "diverse4-5-8_" + STUDENT + "_newadvise20.txt";
-			}
-			else if (i == 3) {
-				DIR = "myDataDiverse4-6-8/" + TEACHER + "/" + STUDENT;
-				TESTFILE = "diverse4-6-8_" + STUDENT + "_newadvise20.txt";
-			}
-			train("newadvise20", 0);
+			TESTFILE = "ind"+i+"s.txt";
+			DIR = "myDataInd"+i+"/"+TEACHER+"/"+STUDENT;
+			train("newadvise40", 0);
+			train("correct40", 0);
 		}
+		
+//		LENGTH = 80;
+//		STUDENT = "depthQ";
+//		for (int i=2; i <= 5; i++) {
+//			NUMTEACHERS = i;
+//			TESTFILE = "ind"+i+"q.txt";
+//			DIR = "myDataInd"+i+"/"+TEACHER+"/"+STUDENT;
+//			train("newadvise40", 0);
+//			train("correct40", 0);
+//		}
 		
 //		running::::
 //		LENGTH = 100;
@@ -336,22 +288,13 @@ public class Experiments {
 			// finding threshold
 //			teachers.add(diverse_teachers[NUMTEACHERS]);
 //			
-//			for (int i = 0; i < NUMTEACHERS; i++) {
-//				teachers.add(g_teachers[i]);
-//				if (INDIETEACHERS) {
-//					INDIEBUDGETS.add(BUDGET);
-//				}
-//			}
-			
-//			special case: diverse
-			teachers.add(diverse_teachers[0]);
-			if (NUMTEACHERS == 2) {
-				teachers.add(diverse_teachers[1]);
+			INDIEBUDGETS.clear();
+			for (int i = 0; i < NUMTEACHERS; i++) {
+				teachers.add(g_teachers[i]);
+				if (INDIETEACHERS) {
+					INDIEBUDGETS.add(BUDGET);
+				}
 			}
-			else if (NUMTEACHERS == 3) {
-				teachers.add(diverse_teachers[2]);
-			}
-			teachers.add(diverse_teachers[3]);
 			
 			// Front-load the advice budget
 			if (learner.startsWith("baseline")) {
