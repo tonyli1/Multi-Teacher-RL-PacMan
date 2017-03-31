@@ -1529,3 +1529,141 @@ java.io.FileNotFoundException:
 	at org.eclipse.ui.internal.decorators.DecorationScheduler$1.ensureResultCached(DecorationScheduler.java:367)
 	at org.eclipse.ui.internal.decorators.DecorationScheduler$1.run(DecorationScheduler.java:327)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.resources 4 2 2017-03-28 23:35:39.002
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 1
+org.eclipse.core.runtime.CoreException: Error saving build states
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4482)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:389)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:198)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:201)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1186)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2283)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$4.run(IDEWorkbenchAdvisor.java:456)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Contains: Error saving last build state for project PacMan_Taylor
+java.io.IOException: There is not enough space on the disk
+	at java.io.FileOutputStream.writeBytes(Native Method)
+	at java.io.FileOutputStream.write(FileOutputStream.java:326)
+	at java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:82)
+	at java.io.BufferedOutputStream.flush(BufferedOutputStream.java:140)
+	at java.io.DataOutputStream.flush(DataOutputStream.java:123)
+	at java.io.FilterOutputStream.close(FilterOutputStream.java:158)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:4131)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:4107)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4472)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:389)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:198)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:201)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1186)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2283)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$4.run(IDEWorkbenchAdvisor.java:456)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+	Suppressed: java.io.IOException: There is not enough space on the disk
+		at java.io.FileOutputStream.writeBytes(Native Method)
+		at java.io.FileOutputStream.write(FileOutputStream.java:326)
+		at java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:82)
+		at java.io.BufferedOutputStream.flush(BufferedOutputStream.java:140)
+		at java.io.FilterOutputStream.close(FilterOutputStream.java:158)
+		at java.io.FilterOutputStream.close(FilterOutputStream.java:159)
+		... 11 more
+!SUBENTRY 1 org.eclipse.jdt.core 4 4 2017-03-28 23:35:39.010
+!MESSAGE Error saving build states
+!SUBENTRY 2 org.eclipse.jdt.core 4 2 2017-03-28 23:35:39.010
+!MESSAGE Error saving last build state for project PacMan_Taylor
+!STACK 0
+java.io.IOException: There is not enough space on the disk
+	at java.io.FileOutputStream.writeBytes(Native Method)
+	at java.io.FileOutputStream.write(FileOutputStream.java:326)
+	at java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:82)
+	at java.io.BufferedOutputStream.flush(BufferedOutputStream.java:140)
+	at java.io.DataOutputStream.flush(DataOutputStream.java:123)
+	at java.io.FilterOutputStream.close(FilterOutputStream.java:158)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:4131)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:4107)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4472)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:389)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:198)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:201)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1186)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2283)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$4.run(IDEWorkbenchAdvisor.java:456)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+	Suppressed: java.io.IOException: There is not enough space on the disk
+		at java.io.FileOutputStream.writeBytes(Native Method)
+		at java.io.FileOutputStream.write(FileOutputStream.java:326)
+		at java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:82)
+		at java.io.BufferedOutputStream.flush(BufferedOutputStream.java:140)
+		at java.io.FilterOutputStream.close(FilterOutputStream.java:158)
+		at java.io.FilterOutputStream.close(FilterOutputStream.java:159)
+		... 11 more
+!SUBENTRY 1 org.eclipse.jdt.core 4 2 2017-03-28 23:35:39.010
+!MESSAGE Error saving last build state for project PacMan_Taylor
+!STACK 0
+java.io.IOException: There is not enough space on the disk
+	at java.io.FileOutputStream.writeBytes(Native Method)
+	at java.io.FileOutputStream.write(FileOutputStream.java:326)
+	at java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:82)
+	at java.io.BufferedOutputStream.flush(BufferedOutputStream.java:140)
+	at java.io.DataOutputStream.flush(DataOutputStream.java:123)
+	at java.io.FilterOutputStream.close(FilterOutputStream.java:158)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:4131)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:4107)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4472)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:389)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:198)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:201)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1186)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2283)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$4.run(IDEWorkbenchAdvisor.java:456)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+	Suppressed: java.io.IOException: There is not enough space on the disk
+		at java.io.FileOutputStream.writeBytes(Native Method)
+		at java.io.FileOutputStream.write(FileOutputStream.java:326)
+		at java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:82)
+		at java.io.BufferedOutputStream.flush(BufferedOutputStream.java:140)
+		at java.io.FilterOutputStream.close(FilterOutputStream.java:158)
+		at java.io.FilterOutputStream.close(FilterOutputStream.java:159)
+		... 11 more
+
+!ENTRY org.eclipse.ui.ide 4 4 2017-03-28 23:35:40.387
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.core.resources 2 10035 2017-03-28 23:35:41.476
+!MESSAGE The workspace will exit with unsaved changes in this session.
+!SESSION 2017-03-29 00:03:05.846 -----------------------------------------------
+eclipse.buildId=4.6.2.M20161124-1400
+java.version=1.8.0_121
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2017-03-29 00:03:09.977
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-03-29 00:03:22.830
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\gamed'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2017-03-30 11:29:59.872 -----------------------------------------------
+eclipse.buildId=4.6.2.M20161124-1400
+java.version=1.8.0_121
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-03-30 11:30:13.846
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\gamed'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.

@@ -43,7 +43,7 @@ public class Experiments {
 	public static String DIR = "myDataTeacher/"+TEACHER+"/"+STUDENT; // Where to store data
 	public static String TESTFILE = "test.txt";
 	public static int NUMTEACHERS = 2;
-	public static boolean INDIETEACHERS = true;
+	public static boolean INDIETEACHERS = false;
 	public static ArrayList<Integer> INDIEBUDGETS = new ArrayList<Integer>();
 	
 	public static int BUDGET = 1000; // Advice budget
@@ -124,16 +124,22 @@ public class Experiments {
 //		 scoreTeacher(teachers);
 		 
 		 // take in file input
-//		 ArrayList<String> file_inputs = new ArrayList<String>();
-//		 try {
-//			file_inputs = ReadInputs("input.txt");
-//		} catch (IOException e) {
-//			System.out.println(e.getMessage());
-//		}
-//		for (int i = 0; i < file_inputs.size(); i++) {
-//			String this_line = file_inputs.get(i);
-//			DIR = this_line+"/"+TEACHER+"/"+STUDENT;
-//		}
+		LENGTH = 80;
+		 ArrayList<String> file_inputs = new ArrayList<String>();
+		 try {
+			file_inputs = ReadInputs("C:/Users/gamed/Dropbox/2016 Summer/Research - Grosz/compareQrev.txt");
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+		for (int i = 0; i < file_inputs.size(); i++) {
+			String this_line = file_inputs.get(i);
+			String[] files = this_line.trim().split(",");
+			if (files.length == 2) {
+				compare(files[0], files[1]);
+			}
+			
+		}
+		System.out.println("Done.");
 		
 //		STUDENT = "depthS";
 //		int[] training_eps = {40, 50, 60};
@@ -181,52 +187,61 @@ public class Experiments {
 //		}
 //		~~~~~~~~~~~~ ~~~~~~~~~~~~~~
 //		TODO v
-		LENGTH = 60;
-		STUDENT = "depthS";
-		for (int i=2; i <= 5; i++) {
-			NUMTEACHERS = i;
-			TESTFILE = "ind"+i+"s.txt";
-			DIR = "myDataInd"+i+"/"+TEACHER+"/"+STUDENT;
-			train("newadvise40", 0);
-			train("correct40", 0);
-		}
-		
+//		LENGTH = 60;
+//		STUDENT = "depthS";
+//		for (int i=5; i <= 5; i++) {
+//			NUMTEACHERS = i;
+//			TESTFILE = "ind"+i+"s.txt";
+//			DIR = "myDataInd"+i+"/"+TEACHER+"/"+STUDENT;
+////			train("newadvise40", 0);
+//			train("correct40", 0);
+//		}
 //		LENGTH = 80;
 //		STUDENT = "depthQ";
-//		for (int i=2; i <= 5; i++) {
+//		for (int i=5; i <= 5; i++) {
 //			NUMTEACHERS = i;
-//			TESTFILE = "ind"+i+"q.txt";
-//			DIR = "myDataInd"+i+"/"+TEACHER+"/"+STUDENT;
+//			DIR = "myDataIndRev"+i+"/"+TEACHER+"/"+STUDENT;
+//			TESTFILE = "indRev"+i+"q_newadvise40.txt";
 //			train("newadvise40", 0);
+//			TESTFILE = "indRev"+i+"q_correct40.txt";
 //			train("correct40", 0);
 //		}
-		
-//		running::::
-//		LENGTH = 100;
-//		STUDENT = "depthQ";
-//		for (int i=1; i <= 5; i++) {
-//			DIR = "myDataSubGood" + i + "/" + TEACHER + "/" + STUDENT + "/baseline";
-//			TESTFILE = "rev" + i + "_" + STUDENT + "_baseline.txt";
+//		LENGTH = 60;
+//		STUDENT = "depthS";
+//		for (int i=4; i <= 4; i++) {
 //			NUMTEACHERS = i;
-//			train("baseline", 0);
-//			DIR = "myDataSubGood" + i + "/" + TEACHER + "/" + STUDENT + "/advise40";
-//			TESTFILE = "rev" + i + "_" + STUDENT + "_advise40.txt";
-//			train("advise40", 0);
-//			DIR = "myDataSubGood" + i + "/" + TEACHER + "/" + STUDENT + "/correct40";
-//			TESTFILE = "rev" + i + "_" + STUDENT + "_correct40.txt";
-//			train("correct40", 0);
-//		}
-//		
-//		LENGTH = 100;
-//		STUDENT="depthS";
-//		for (int i=1; i <= 5; i++) {
-//			DIR = "myDataSubGood" + i + "/" + TEACHER + "/" + STUDENT + "/advise40";
-//			TESTFILE = "rev" + i + "_" + STUDENT + "_advise40.txt";
-//			NUMTEACHERS = i;
-//			train("advise40", 0);
-//			DIR = "myDataSubGood" + i + "/" + TEACHER + "/" + STUDENT + "/correct40";
-//			TESTFILE = "rev" + i + "_" + STUDENT + "_correct40.txt";
-//			train("correct40", 0);
+//			if (i == 1) {
+//				// 4
+//				DIR = "myDataDiverse4/"+TEACHER+"/"+STUDENT;
+//				TESTFILE = "div4_"+STUDENT+"_newadvise20.txt";
+//				train("newadvise20", 0);
+//				TESTFILE = "div4_"+STUDENT+"_correct20.txt";
+//				train("correct20", 0);
+//			}
+//			else if (i == 2) {
+//				// 4-5
+//				DIR = "myDataDiverse4-5/"+TEACHER+"/"+STUDENT;
+//				TESTFILE = "div4-5_"+STUDENT+"_newadvise20.txt";
+//				train("newadvise20", 0);
+//				TESTFILE = "div4-5_"+STUDENT+"_correct20.txt";
+//				train("correct20", 0);
+//			}
+//			else if (i == 3) {
+//				// 4-5-6-8
+//				DIR = "myDataDiverse4-5-6-8/"+TEACHER+"/"+STUDENT;
+//				TESTFILE = "div4-5-6-8_"+STUDENT+"_newadvise20.txt";
+//				train("newadvise20", 0);
+//				TESTFILE = "div4-5-6-8_"+STUDENT+"_correct20.txt";
+//				train("correct20", 0);
+//			}
+//			else {
+//				// 4-6-8
+//				DIR = "myDataDiverse4-6-8/"+TEACHER+"/"+STUDENT;
+////				TESTFILE = "div4-6-8_"+STUDENT+"_newadvise20.txt";
+////				train("newadvise20", 0);
+//				TESTFILE = "div4-6-8_"+STUDENT+"_correct20.txt";
+//				train("correct20", 0);
+//			}
 //		}
 		
 	}
@@ -290,11 +305,37 @@ public class Experiments {
 //			
 			INDIEBUDGETS.clear();
 			for (int i = 0; i < NUMTEACHERS; i++) {
-				teachers.add(g_teachers[i]);
+				teachers.add(g_teachers_sub[i]);
 				if (INDIETEACHERS) {
 					INDIEBUDGETS.add(BUDGET);
 				}
 			}
+			//			special case diverse
+//			if (NUMTEACHERS == 4) {
+//				teachers.add(diverse_teachers[0]);
+//				teachers.add(diverse_teachers[2]);
+//				teachers.add(diverse_teachers[3]);
+//				if (INDIETEACHERS) {
+//					INDIEBUDGETS.add(BUDGET);
+//					INDIEBUDGETS.add(BUDGET);
+//					INDIEBUDGETS.add(BUDGET);
+//				}
+//			}
+//			else {
+//				for (int i = 0; i < NUMTEACHERS; i++) {
+//					teachers.add(diverse_teachers[i]);
+//					if (INDIETEACHERS) {
+//						INDIEBUDGETS.add(BUDGET);
+//					}
+//				}
+//				if (NUMTEACHERS == 3) {
+//					teachers.add(diverse_teachers[3]);
+//					if (INDIETEACHERS) {
+//						INDIEBUDGETS.add(BUDGET);
+//					}
+//				}
+//			}
+			
 			
 			// Front-load the advice budget
 			if (learner.startsWith("baseline")) {
@@ -582,8 +623,10 @@ public class Experiments {
 	public static void compare(String dir1, String dir2) {
 		
 		LearningCurve[] curves1 = new LearningCurve[REPEATS];
-		for (int i=0; i<REPEATS; i++)
-			curves1[i] = new LearningCurve(LENGTH+1, TRAIN, "myData/"+dir1+"/curve"+i);
+		for (int i=0; i<REPEATS; i++){
+			curves1[i] = new LearningCurve(LENGTH+1, TRAIN, dir1+"/curve"+i);
+		}
+			
 		
 		double[] areas1 = new double[REPEATS];
 		for (int i=0; i<REPEATS; i++)
@@ -591,7 +634,7 @@ public class Experiments {
 		
 		LearningCurve[] curves2 = new LearningCurve[REPEATS];
 		for (int i=0; i<REPEATS; i++)
-			curves2[i] = new LearningCurve(LENGTH+1, TRAIN, "myData/"+dir2+"/curve"+i);
+			curves2[i] = new LearningCurve(LENGTH+1, TRAIN, dir2+"/curve"+i);
 		
 		double[] areas2 = new double[REPEATS];
 		for (int i=0; i<REPEATS; i++)
